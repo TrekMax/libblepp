@@ -22,8 +22,19 @@ you can use select(), poll() or blocking IO.
 
 
 ### Building the library
+
 There are currently autoconf (./configure) and CMake options. It's not
 a complex library to build, so either option should work fine.  
+
+dependencies:
+
+linux(ubuntu): libbluetooth-dev gnuplot
+
+```shell
+sudo apt install libbluetooth-dev gnuplot
+pkg-config --modversion bluez
+```
+
 Autoconf:
 ```
 ./configure  

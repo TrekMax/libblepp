@@ -137,6 +137,8 @@ namespace BLEPP
 		Idle,
 		ReadingPrimaryService,
 		FindAllCharacteristics,
+		Pairing,
+		Paired,
 		GetClientCharaceristicConfiguration,
 		AwaitingWriteResponse,
 		AwaitingReadResponse,
@@ -336,6 +338,7 @@ namespace BLEPP
 			void connect_blocking(const std::string& addres);
 			void connect_nonblocking(const std::string& addres);
 			void connect(const std::string& addresa, bool blocking, bool pubaddr = true, std::string device = "");
+			int pair();
 			void close();
 
 			int socket();

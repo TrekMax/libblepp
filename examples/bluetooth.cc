@@ -25,6 +25,7 @@
 #include <sstream>
 #include <iomanip>
 #include <blepp/blestatemachine.h>
+#include <blepp/pretty_printers.h>
 #include <blepp/float.h>
 #include <deque>
 #include <sys/time.h>
@@ -100,6 +101,7 @@ int main(int argc, char **argv)
 	//Function that reads an indication and formats it for plotting.
 	std::function<void(const PDUNotificationOrIndication&)> notify_cb = [&](const PDUNotificationOrIndication& n)
 	{
+		return;
 		if(count == -1)
 		{
 			prev_time = get_time_of_day();
@@ -167,16 +169,20 @@ int main(int argc, char **argv)
 	bool enable=true;
 	std::function<void()> cb = [&gatt, &notify_cb, &enable](){
 
-		pretty_print_tree(gatt);
+		// pretty_print_tree(gatt);
 
 		for(auto& service: gatt.primary_services)
 			for(auto& characteristic: service.characteristics)
-				if(service.uuid == UUID("7309203e-349d-4c11-ac6b-baedd1819764") && characteristic.uuid == UUID("e5f49879-6ee1-479e-bfec-3d35e13d3b88"))
-				{
-					cout << "woooo\n";
-					characteristic.cb_notify_or_indicate = notify_cb;
-					characteristic.set_notify_and_indicate(enable, false);
-				}
+				// if(service.uuid == UUID("7309203e-349d-4c11-ac6b-baedd1819764") && characteristic.uuid == UUID("e5f49879-6ee1-479e-bfec-3d35e13d3b88"))
+				// {
+				// 	cout << "woooo\n";
+				// 	characteristic.cb_notify_or_indicate = notify_cb;
+				// 	characteristic.set_notify_and_indicate(enable, false);
+				// }
+
+				cout << "Service: " << BLEPP::to_str(service.uuid) 
+					<< " Characteristic: " << BLEPP::to_str(characteristic.uuid)
+					<< " value_handle: " << characteristic.value_handle << endl;
 	};
 	
 	////////////////////////////////////////////////////////////////////////////////

@@ -25,3 +25,5 @@ autom4te.cache
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
+build/
+.vscode/

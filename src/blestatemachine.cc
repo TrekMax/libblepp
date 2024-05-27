@@ -324,7 +324,13 @@ namespace BLEPP
 		}
 	}
 
-
+	int BLEGATTStateMachine::pair()
+	{
+		if (state == Disconnected)
+			return -1;
+		
+		return 0;
+	}
 
 	int BLEGATTStateMachine::socket()
 	{
